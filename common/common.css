@@ -1,0 +1,79 @@
+/* 去除默认样式 */
+body,h1,h2,h3,p,img,ul,ol,li,input,textarea,button {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+input, textarea {
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+img {
+  border: none;
+}
+
+/* 文字省略号 */
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.i-b {
+  display: inline-block;
+}
+
+.v-m {
+  vertical-align: middle;
+}
+
+.v-t {
+  vertical-align: top;
+}
+
+.t-c {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-item {
+  flex: 1;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-colmun {
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
