@@ -72,11 +72,11 @@ var app = new Vue({
     watch:{
         showMark:function(val){
             if(val){
-                document.body.style.overflow = 'hidden';
-                document.documentElement.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                // document.documentElement.style.overflow = 'hidden';
             }else{
-                document.body.style.overflow = 'auto';
-                document.documentElement.style.overflow = 'auto';
+                document.body.style.position = 'static';
+                // document.documentElement.style.overflow = 'auto';
             }
         }
     }
