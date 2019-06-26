@@ -40,6 +40,7 @@
             width: 3rem;
             height: 3rem;
             background: #fff;
+            overflow: scroll;
         }
     </style>
 </head>
@@ -47,12 +48,16 @@
     <div id="app">
         <div class="list-wrapper" >
             <div class="list-item" v-for="(item,i) in list" :key="i">
-                <p @click="showMark=true;">点击打开弹层</p>
+                <p @click="showMark=true;">点击打开弹层{{i}}</p>
             </div>
         </div>
 
         <div class="mark" v-show="showMark">
-            <div class="content">我是弹层</div>
+            <div class="content">
+                    <p>
+                        我是弹层我是弹层我是弹层我是弹层我是弹层
+                    </p>
+            </div>
         </div>
     </div>
 </body>
