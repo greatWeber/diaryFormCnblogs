@@ -41,6 +41,10 @@
             height: 3rem;
             background: #fff;
         }
+
+        .noScroll {
+            pointer-events:none;
+        }
     </style>
 </head>
 <body>
@@ -51,7 +55,7 @@
             </div>
         </div>
 
-        <div class="mark" v-show="showMark">
+        <div class="mark" v-show="showMark" :class="showMark?'noScroll':''">
             <div class="content">我是弹层</div>
         </div>
     </div>
@@ -72,10 +76,10 @@ var app = new Vue({
     watch:{
         showMark:function(val){
             if(val){
-                document.body.style.position = 'fixed';
+                // document.body.style.position = 'fixed';
                 // document.documentElement.style.overflow = 'hidden';
             }else{
-                document.body.style.position = 'static';
+                // document.body.style.position = 'static';
                 // document.documentElement.style.overflow = 'auto';
             }
         }
