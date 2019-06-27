@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../plugins/vue2.6.10.js"></script>
+    <script src="../plugins/flexible.js"></script>
+    <link rel="stylesheet" href="../common/common.css">
+    <style>
+        .list-wrapper {
+            width: 100vw;
+
+        }
+        .list-item {
+            width: 100%;
+            height: 1.2rem;
+            line-height: 1.2rem;
+            border-bottom: 1px solid #eee;
+            text-indent: 0.5rem;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .mark {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content {
+            width: 3rem;
+            height: 3rem;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="list-wrapper" >
+            <div class="list-item" v-for="(item,i) in list" :key="i">
+                <p @click="showMark=true;">点击打开弹层</p>
+            </div>
+        </div>
+
+        <div class="mark" v-show="showMark" @touchmove.prevent>
+            <div class="content">我是弹层</div>
+        </div>
+    </div>
+</body>
+<script>
+var app = new Vue({
+    el:'#app',
+    data:{
+        list:[],
+        showMark: false,
+    },
+    created: function(){
+        for(var i=0;i<20;i++){
+            this.list.push(i);
+        }
+    },
+})
+</script>
+</html>
