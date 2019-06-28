@@ -18,7 +18,6 @@ var TouchScroll = /** @class */ (function () {
         this.setParent();
         if (this.pHeight <= 0 && this.pWidth <= 0)
             return;
-            console.log(this.pHeight)
         this.bindEvents();
         this.bindNoScroll();
     };
@@ -94,13 +93,13 @@ var TouchScroll = /** @class */ (function () {
         var offsetY = touch.pageY - Number(this.startY);
         var rangX = offsetX + this.endX;
         var rangY = offsetY + this.endY;
-        if (Math.abs(rangY) > this.pHeight) {
+        if (Math.abs(rangY) > this.pHeight && rangY < 0) {
             rangY = -this.pHeight;
         }
         if (rangY > 0) {
             rangY = 0;
         }
-        if (Math.abs(rangX) > this.pWidth) {
+        if (Math.abs(rangX) > this.pWidth && rangY < 0) {
             rangX = -this.pWidth;
         }
         if (rangX > 0) {
