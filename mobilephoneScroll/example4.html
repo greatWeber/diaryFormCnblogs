@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="../plugins/vue2.6.10.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="../plugins/flexible.js"></script>
     <link rel="stylesheet" href="../common/common.css">
     <style>
@@ -37,8 +37,8 @@
         }
 
         .content {
-            width: 3rem;
-            height: 3rem;
+            width: 5rem;
+            height: 8rem;
             background: #fff;
         }
     </style>
@@ -51,23 +51,38 @@
             </div>
         </div>
 
-        <div class="mark" v-show="showMark" @touchmove.prevent>
-            <div class="content">我是弹层</div>
+        <div class="mark" v-show="showMark" ref="mark">
+            <div class="content" >
+                <p ref="content">
+                    我是弹层我是弹层我是弹层我是弹层我是弹层
+                    我是弹层我是弹层我是弹层我是弹层我是弹层
+                    我是弹层我是弹层我是弹层我是弹层我是弹层
+                    我是弹层我是弹层我是弹层我是弹层我是弹层
+                </p>
+            </div>
         </div>
     </div>
 </body>
+<script src="./touchScroll.js"></script>
 <script>
 var app = new Vue({
     el:'#app',
     data:{
         list:[],
-        showMark: false,
+        showMark: true,
     },
     created: function(){
         for(var i=0;i<20;i++){
             this.list.push(i);
         }
     },
+    mounted(){
+        let touchScroll = new TouchScroll({
+            target: this.$refs.content,
+            des:'y',
+            onScrolls: [this.$refs.mark]
+        });
+    }
 })
 </script>
 </html>
