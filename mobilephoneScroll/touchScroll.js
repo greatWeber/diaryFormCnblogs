@@ -10,7 +10,7 @@ var TouchScroll = /** @class */ (function () {
         this.bool = true;
         this.target = params.target;
         this.des = params.des;
-        this.noScrolls = params.onScrolls || [];
+        this.noScrolls = params.noScrolls || [];
         this.init();
     }
     ;
