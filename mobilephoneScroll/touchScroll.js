@@ -93,13 +93,13 @@ var TouchScroll = /** @class */ (function () {
         var offsetY = touch.pageY - Number(this.startY);
         var rangX = offsetX + this.endX;
         var rangY = offsetY + this.endY;
-        if (Math.abs(rangY) > this.pHeight && rangY < 0) {
+        if (Math.abs(rangY) > this.pHeight && offsetY < 0) {
             rangY = -this.pHeight;
         }
         if (rangY > 0) {
             rangY = 0;
         }
-        if (Math.abs(rangX) > this.pWidth && rangY < 0) {
+        if (Math.abs(rangX) > this.pWidth && offsetX < 0) {
             rangX = -this.pWidth;
         }
         if (rangX > 0) {
