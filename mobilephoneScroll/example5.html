@@ -86,7 +86,7 @@ var app = new Vue({
             _this.touchScroll = new TouchScroll({
                 target: this.$refs.content,
                 des:'y',
-                onScrolls: [this.$refs.mark]
+                noScrolls: [this.$refs.mark]
             });
         },1000)
         
