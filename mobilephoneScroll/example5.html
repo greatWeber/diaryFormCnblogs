@@ -79,11 +79,14 @@ var app = new Vue({
         }
     },
     mounted(){
-        let touchScroll = new TouchScroll({
-            target: this.$refs.content,
-            des:'y',
-            onScrolls: [this.$refs.mark]
-        });
+        setTimeout(()=>{
+
+            let touchScroll = new TouchScroll({
+                target: this.$refs.content,
+                des:'y',
+                onScrolls: [this.$refs.mark]
+            });
+        },1000)
     }
 })
 </script>
