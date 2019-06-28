@@ -18,6 +18,7 @@ var TouchScroll = /** @class */ (function () {
         this.setParent();
         if (this.pHeight <= 0 && this.pWidth <= 0)
             return;
+            console.log(this.pHeight)
         this.bindEvents();
         this.bindNoScroll();
     };
