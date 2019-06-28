@@ -72,6 +72,7 @@ var app = new Vue({
     data:{
         list:[],
         showMark: true,
+        touchScroll: null,
     },
     created: function(){
         for(var i=0;i<20;i++){
@@ -79,14 +80,21 @@ var app = new Vue({
         }
     },
     mounted(){
-        setTimeout(()=>{
-
-            let touchScroll = new TouchScroll({
-                target: this.$refs.content,
-                des:'y',
-                onScrolls: [this.$refs.mark]
-            });
-        },1000)
+        this.touchScroll = new TouchScroll({
+            target: this.$refs.content,
+            des:'y',
+            onScrolls: [this.$refs.mark]
+        });
+        
+    },
+    watch:{
+        showMark(val){
+            if(val){
+                this.touchScroll.start();
+            }else{
+                this.touchScroll.reset();
+            }
+        }
     }
 })
 </script>

@@ -16,14 +16,26 @@ var TouchScroll = /** @class */ (function () {
     ;
     TouchScroll.prototype.init = function () {
         this.setParent();
-        if (this.pHeight <= 0 && this.pWidth <= 0)
-            return;
+        // if(this.pHeight<=0&&this.pWidth<=0) return;
         this.bindEvents();
         this.bindNoScroll();
+    };
+    TouchScroll.prototype.start = function (time) {
+        if (time === void 0) { time = 1000; }
+        var _this = this;
+        setTimeout(function () {
+            _this.getWeight();
+        }, time);
     };
     TouchScroll.prototype.setParent = function () {
         // 设置父级
         this.parent = this.target.parentNode;
+        this.getWeight();
+        this.target.style.transition = 'transform 0.1s linear';
+        this.parent.style.overflow = 'hidden';
+        this.parent.addEventListener('touchmove', function (e) { return e.preventDefault(); }, false);
+    };
+    TouchScroll.prototype.getWeight = function () {
         this.pWidth = this.target.getBoundingClientRect().width +
             parseInt(this.getStyle(this.target, 'marginLeft')) +
             parseInt(this.getStyle(this.target, 'marginRight'))
@@ -32,9 +44,13 @@ var TouchScroll = /** @class */ (function () {
             parseInt(this.getStyle(this.target, 'marginTop')) +
             parseInt(this.getStyle(this.target, 'marginBottom'))
             - this.parent.getBoundingClientRect().height;
-        this.target.style.transition = 'transform 0.1s linear';
-        this.parent.style.overflow = 'hidden';
-        this.parent.addEventListener('touchmove', function (e) { return e.preventDefault(); }, false);
+    };
+    TouchScroll.prototype.reset = function (time) {
+        if (time === void 0) { time = 1000; }
+        var _this = this;
+        setTimeout(function () {
+            _this.target.style.transform = "translate(0px,0px)";
+        }, time);
     };
     TouchScroll.prototype.getStyle = function (obj, attr) {
         if (obj.currentStyle) {
@@ -66,7 +82,6 @@ var TouchScroll = /** @class */ (function () {
         this.target.addEventListener('touchstart', this._touchStartHandler, false);
     };
     TouchScroll.prototype.touchStartHandler = function (e) {
-        console.log(e);
         var touch = e.targetTouches[0];
         this.startX = touch.pageX;
         this.startY = touch.pageY;
@@ -78,6 +93,8 @@ var TouchScroll = /** @class */ (function () {
     TouchScroll.prototype.touchMoveHandler = function (e) {
         // 核心
         e.preventDefault();
+        if (this.pHeight <= 0 && this.pWidth <= 0)
+            return;
         // 限流-start
         this.limit++;
         if (this.limit >= 5) {
