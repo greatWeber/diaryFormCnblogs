@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../plugins/vue2.6.10.js"></script>
+
+    <style>
+      #app {
+          padding: 100px;
+      }
+
+      .item {
+          padding: 10px;
+      }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="item">
+            <label for="">数值</label>
+            <input type="number" placeholder="请输入数字" v-model="input">
+        </div>
+        <div class="item">
+            <label for="">小数点</label>
+            <input type="number" placeholder="请输小数点" v-model="decimal">
+        </div>
+        <button @click="changeHandle">四舍五入</button>
+        <span>结果:  {{result}}</span>
+    </div>
+</body>
+<script>
+var app = new Vue({
+    el:'#app',
+    data:{
+        input:0,
+        decimal:2,
+        result:''
+    },
+    created: function(){
+       
+    },
+    methods:{
+        changeHandle:function (){
+            this.result = this.toFixed(this.input,this.decimal);
+        },
+        toFixed(num,decimal){
+            if(isNaN(num)){
+                return 0;
+            }
+            num = num-0;
+            var p1 = Math.pow(10, decimal + 1);
+            var p2 = Math.pow(10, decimal);
+            console.log(num * p1 / 10);
+            console.log(Math.round(num * p1 / 10));
+            return (Math.round(num * p1 / 10) / p2).toFixed(decimal);
+        }
+    }
+})
+</script>
+</html>
