@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深度优先遍历</title>
+</head>
+<body>
+<!-- <textarea id="textarea" cols="30" rows="10" placeholder="请输入一个对象"></textarea>
+<button id="button">深度优先遍历</button>
+<div id="result">
+
+</div> -->
+
+<script>
+
+function DFS(target,visiteds){
+    var Type = Object.prototype.toString.call(target).slice(8,-1);
+    console.log(Type)
+    var copy = Type == 'Array'?[]:{};
+    visiteds = visiteds|| []; //处理环形数据，防止无限循环
+    switch(Type){
+        case 'Array':
+        case 'Object':
+            var index = visiteds.indexOf(target);
+            if(index>-1){
+                copy = visiteds[index];
+            }else{
+                visiteds.push(target);
+                for(var key in target){
+                    copy[key] = DFS(target[key],visiteds);
+                }
+            }
+        break;
+        default:
+            copy = target;
+        break; 
+
+    }
+    return copy;
+};
+
+// test
+var target = {
+    a:'a',
+    b:{
+        c:'c',
+        d:{
+            e:'e',
+            f: function(){
+                console.log(this.e);
+            }
+        }
+    },
+    bb:[1,2,3],
+    cc: undefined,
+    dd: null
+};
+
+target.cc = target;
+var copy = DFS(target);
+
+target.b.c='cc';
+target.bb = [3,2,1];
+target.b.d.f = function(){
+    console.log('123')
+}
+console.log(target);
+console.log(copy);
+
+</script>
+</body>
+</html>
