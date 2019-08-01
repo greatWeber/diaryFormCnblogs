@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>border-radius and transform bug</title>
+    <style>
+        .wrapper {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto ;
+            margin-top: calc(50vh - 100px);
+            border: 1px solid #000;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .child {
+            width: 100%;
+            /* height: 100%; */
+            padding: calc(50% - 6px) 0;
+            background: red;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1;
+            cursor: pointer;
+
+        }
+
+        .transform {
+            transform: translateX(-100%);
+            transition: transform 5s linear;
+        }
+
+        .btns {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .bug {
+            transform: rotate(0deg);
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="child">点击移动</div>
+</div>
+<div class="btns">
+    <button class="btn">解决bug</button>
+</div>
+
+<script>
+window.onload = function(){
+    let $child = document.querySelector('.child');
+    let $btn = document.querySelector('.btn');
+    let $wrapper = document.querySelector('.wrapper');
+    $child.addEventListener('touchstart',function(e){
+        this.classList.toggle('transform');
+        
+    });
+
+    $btn.addEventListener('touchstart',function(e){
+        $wrapper.classList.toggle('bug');
+    })
+}
+</script>
+</body>
+</html>
