@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form bug</title>
+    <style>
+        .form {
+            width: 100%;
+        }
+
+        .input {
+            width: 100%;
+            line-height: 35px;
+            margin: 20px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<form class="form">
+    <input type="text" class="input" placeholder="请输入"/>
+    <input type="text" class="input" placeholder="请输入"/>
+    <input type="text" class="input" placeholder="请输入"/>
+    <input type="text" class="input" placeholder="请输入"/>
+    <input type="text" class="input" placeholder="请输入"/>
+    <input type="text" class="input" placeholder="请输入"/>
+    <input type="text" class="input" placeholder="请输入"/>
+    <input type="text" class="input" placeholder="请输入"/>
+    <input type="text" class="input" placeholder="请输入"/>
+    <button class="btn">解决bug</button>
+</form>
+</body>
+
+<script>
+    let bug = true;
+    let $btn = document.querySelector('.btn');
+    $btn.addEventListener('touchstart',function(e){
+        e.preventDefault();
+        if(!bug) return;
+        bug = false;
+        ;(/iphone|ipod|ipad/i.test(navigator.appVersion) && navigator.userAgent.indexOf('MicroMessenger') >= 0) && (function () {
+            var Timer = null;
+            document.addEventListener('blur', function (e) {
+            // 这里加了个类型判断，因为a等元素也会触发blur事件
+            if (e.target && e.target.localName) {
+                ['input', 'textarea'].indexOf(e.target.localName) !== -1 && document.documentElement.scrollIntoView(false)
+            }
+            }, true);
+        })();
+    })
+
+
+</script>
+</html>
