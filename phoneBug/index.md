@@ -27,3 +27,40 @@
 ## 移动端弹窗滚动穿透的bug
 > 具体bug: 当在弹窗上滚动的时候，下面的页面也会触发滚动。
 > 解决方法：请看笔者的另外一篇文章! [传送门](https://www.cnblogs.com/blogs-xlf/p/11102939.html)
+
+## 移动端1px问题
+> 这里我用了5中方法解决，想要查看效果，用手机查看这里[传送门](https://greatweber.github.io/diaryFormCnblogs/phoneBug/1px.html)
+> 这五种方法的代码如下：
+```css
+.border-type_1 {
+    border-bottom: 0.01rem solid #000;
+}
+
+.border-type_2 {
+    border-bottom: 1px solid #000;
+}
+
+.border-type_3 {
+    border-bottom: 0.5px solid #000;
+}
+.border-type_5 {
+    position: relative;
+}
+
+.border-type_5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(0.5);
+    background: #000;
+}
+
+.border-type_6 {
+    box-shadow: inset 0px -1px 1px -1px #000;
+}
+```
+> 这五种方法中，比较稳的是`使用伪类`, 使用`rem, 0.5px` 在ios上是没有问题，但在安卓上就尴尬了，微信浏览器和大多数浏览器都不支持，新版的chrome则没问题。而`使用阴影`也是很稳，但颜色很难控制。
+
