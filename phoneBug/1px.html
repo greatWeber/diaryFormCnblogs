@@ -51,16 +51,27 @@
 
 <script>
 window.onload = function(){
-    rem();
+    setRem();
 };
-function rem(){
-    let winWidth = document.body.offsetWidth;
-    winWidth = Math.max([winWidth,750]);
-    let fontSize = winWidth / 100;
-    document.body.style.fontSize = '16px';
+/**
+* design: 是设计稿的宽度，也是页面的最大宽度
+* 这里的比例是1:100; 1rem = 100px;
+**/
+function setRem(design=750){
     let styleElm = document.createElement('style');
-    styleElm.innerHTML = 'html {font-size:'+fontSize+'px;}';
+    rem();
     document.firstElementChild.appendChild(styleElm);
+    window.onresize = function(){
+        rem();
+    }
+
+    function rem(){
+        let winWidth = document.documentElement.getBoundingClientRect().width;
+        winWidth = Math.min(winWidth,design);
+        let fontSize = winWidth / design *100;
+        document.body.style.fontSize = '16px';
+        styleElm.innerHTML = 'html {font-size:'+fontSize+'px;}';
+    }
 }
 </script>
 </html>
