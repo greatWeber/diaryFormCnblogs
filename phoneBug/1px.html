@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1px bug</title>
+    <style>
+        p {
+            line-height: 2;
+
+        }
+        .border-type_1 {
+            border-bottom: 0.01rem solid #000;
+        }
+
+        .border-type_2 {
+            border-bottom: 1px solid #000;
+        }
+
+        .border-type_3 {
+            border-bottom: 0.5px solid #000;
+        }
+        .border-type_5 {
+            position: relative;
+        }
+
+        .border-type_5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            transform: scaleY(0.5);
+            background: #000;
+        }
+
+        .border-type_6 {
+            box-shadow: inset 0px -1px 1px -1px #000;
+        }
+    </style>
+</head>
+<body> 
+<p class="border-type_1">使用rem</p>
+<p class="border-type_2">使用1px</p>
+<p class="border-type_3">使用0.5px</p>
+<p class="border-type_5">使用伪类</p>
+<p class="border-type_6">使用阴影</p>
+</body>
+
+<script>
+window.onload = function(){
+    rem();
+};
+function rem(){
+    let winWidth = document.body.offsetWidth;
+    winWidth = Math.max([winWidth,750]);
+    let fontSize = winWidth / 100;
+    document.body.style.fontSize = '16px';
+    let styleElm = document.createElement('style');
+    styleElm.innerHTML = 'html {font-size:'+fontSize+'px;}';
+    document.firstElementChild.appendChild(styleElm);
+}
+</script>
+</html>
